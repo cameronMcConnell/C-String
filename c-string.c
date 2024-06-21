@@ -187,5 +187,15 @@ string *extract(const string *str, size_t start, size_t end) {
 }
 
 int compare(const string *str1, const string *str2) {
+    if (str1->length != str2->length) {
+        return 0;
+    }
 
+    for (size_t i = 0; i < str1->length; i++) {
+        if (str1->str[i] != str2->str[i]) {
+            return 0;
+        }
+    }
+
+    return 1;
 }
