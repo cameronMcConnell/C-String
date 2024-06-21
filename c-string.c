@@ -136,7 +136,16 @@ string *toUpper(const string *str) {
 }
 
 string *toLower(const string *str) {
+    string *newStr = newString(str->str);
 
+    for (size_t i = 0; i < newStr->length; i++) {
+        size_t unicode_value = (int) newStr->str[i];
+        if (unicode_value >= 65 && unicode_value <= 90) {
+            newStr->str[i] = (char) unicode_value + 32;
+        }
+    }
+
+    return newStr;
 }
 
 string *reverse(const string *str) {
