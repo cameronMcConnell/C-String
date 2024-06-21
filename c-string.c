@@ -164,7 +164,26 @@ string *reverse(const string *str) {
 }
 
 string *extract(const string *str, size_t start, size_t end) {
+    string *newStr = (string*) malloc(sizeof(string));
+    if (newStr == NULL) {
+        return NULL;
+    }
 
+    newStr->length = end - start + 1;
+    newStr->str = (char*) malloc((newStr->length + 1) * sizeof(char));
+    if (newStr->str == NULL) {
+        free(newStr);
+        return NULL;
+    }
+
+    for (size_t i = 0; start < end; i++) {
+        newStr->str[i] = str->str[start];
+        start++;
+    }
+
+    newStr->str[newStr->length] = '\0';
+
+    return newStr;
 }
 
 int compare(const string *str1, const string *str2) {
