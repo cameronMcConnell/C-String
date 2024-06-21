@@ -123,7 +123,16 @@ string *replace(const string *str, const char oldChar, const char newChar) {
 }
 
 string *toUpper(const string *str) {
-    
+    string *newStr = newString(str->str);
+
+    for (size_t i = 0; i < newStr->length; i++) {
+        size_t unicode_value = (int) newStr->str[i];
+        if (unicode_value >= 97 && unicode_value <= 122) {
+            newStr->str[i] = (char) unicode_value - 32;
+        }
+    }
+
+    return newStr;
 }
 
 string *toLower(const string *str) {
