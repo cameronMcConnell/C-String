@@ -149,7 +149,18 @@ string *toLower(const string *str) {
 }
 
 string *reverse(const string *str) {
+    string *newStr = newString(str->str);
 
+    size_t i = 0;
+    size_t j = newStr->length - 1;
+
+    while (i < j) {
+        char temp = newStr->str[i];
+        newStr->str[i] = newStr->str[j];
+        newStr->str[j] = temp;
+    }
+
+    return newStr;
 }
 
 string *extract(const string *str, size_t start, size_t end) {
