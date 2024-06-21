@@ -109,3 +109,35 @@ string *trim(const string *str) {
 
     return newStr;
 }
+
+string *replace(const string *str, const char oldChar, const char newChar) {
+    string *newStr = newString(str->str);
+
+    for (size_t i = 0; i < newStr->length; i++) {
+        if (newStr->str[i] == oldChar) {
+            newStr->str[i] = newChar;
+        }
+    }
+
+    return newStr;
+}
+
+string *toUpper(const string *str) {
+    
+}
+
+string *toLower(const string *str) {
+
+}
+
+string *reverse(const string *str) {
+
+}
+
+string *extract(const string *str, size_t start, size_t end) {
+
+}
+
+int compare(const string *str1, const string *str2) {
+
+}
