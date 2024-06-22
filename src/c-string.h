@@ -32,6 +32,6 @@ string *copyString(const string *str);
 
 int isSubstring(const string *str, const string *sub);
 
-string **split(const string *str, const char delimeter);
+string **split(const string *str, const char delimeter, size_t *count);
 
 #endif
