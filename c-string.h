@@ -28,4 +28,10 @@ string *extract(const string *str, size_t start, size_t end);
 
 int compare(const string *str1, const string *str2);
 
+string *copyString(const string *str);
+
+int findSubstring(const string *str, const char *sub);
+
+string **split(const string *str, const char delimeter);
+
 #endif

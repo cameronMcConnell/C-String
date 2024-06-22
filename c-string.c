@@ -201,3 +201,15 @@ int compare(const string *str1, const string *str2) {
 
     return 1;
 }
+
+string *copyString(const string *str) {
+    return newString(str->str);
+}
+
+int findSubstring(const string *str, const char *sub) {
+
+}
+
+string **split(const string *str, const char delimeter) {
+    
+}
