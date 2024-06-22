@@ -158,6 +158,8 @@ string *reverse(const string *str) {
         char temp = newStr->str[i];
         newStr->str[i] = newStr->str[j];
         newStr->str[j] = temp;
+        i++;
+        j--;
     }
 
     return newStr;
