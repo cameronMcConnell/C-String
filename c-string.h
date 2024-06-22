@@ -30,7 +30,7 @@ int compare(const string *str1, const string *str2);
 
 string *copyString(const string *str);
 
-int findSubstring(const string *str, const char *sub);
+int isSubstring(const string *str, const string *sub);
 
 string **split(const string *str, const char delimeter);
 

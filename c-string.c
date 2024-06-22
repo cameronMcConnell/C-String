@@ -206,10 +206,31 @@ string *copyString(const string *str) {
     return newString(str->str);
 }
 
-int findSubstring(const string *str, const char *sub) {
+int isSubstring(const string *str, const string *sub) {
+    if (sub->length > str->length) {
+        return 0;
+    }
 
+    size_t k = 0;
+
+    for (size_t i = 0; i < str->length; i++) {
+        k = 0;
+        for (size_t j = i; j < str->length; j++) {
+            if (sub->str[k] == str->str[j]) {
+                k++;
+            }
+
+            if (k == sub->length) {
+                return 1;
+            } else {
+                break;
+            }
+        }
+    }
+
+    return 0;
 }
 
 string **split(const string *str, const char delimeter) {
-    
+
 }
