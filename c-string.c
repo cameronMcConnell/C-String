@@ -231,6 +231,64 @@ int isSubstring(const string *str, const string *sub) {
     return 0;
 }
 
-string **split(const string *str, const char delimeter) {
+string **split(const string *str, const char delimeter, size_t *count) {
+    size_t delimeterCount = 0;
 
+    for (size_t i = 0; i < str->length; i++) {
+        if (str->str[i] == delimeter) {
+            delimeterCount++;
+        }
+    }
+
+    if (delimeterCount == 0) {
+        string **splitArray = (string**) malloc(sizeof(string*));
+        if (splitArray == NULL) {
+            return NULL;
+        }
+        *count = 1;
+        splitArray[0] = copyString(str);
+        return splitArray;
+    }
+
+    string **splitArray = (string**) malloc((delimeterCount + 1) * sizeof(string*));
+    if (splitArray == NULL) {
+        return NULL;
+    }
+
+    size_t start = 0;
+    size_t arrayIndex = 0;
+    size_t bufferIndex = 0;
+
+    for (size_t i = 0; i <= str->length; i++) {
+        if (str->str[i] == delimeter || i == str->length) {
+            size_t subLength = i - start;
+            
+            char *stringBuffer = (char*) malloc((subLength + 1) * sizeof(char));
+            if (stringBuffer == NULL) {
+                for (size_t j = 0; j < arrayIndex; j++) {
+                    freeString(splitArray[j]);
+                }
+                free(splitArray);
+                return NULL;
+            }
+
+            bufferIndex = 0;
+
+            while (start < i) {
+                stringBuffer[bufferIndex] = str->str[start];
+                bufferIndex++;
+                start++;
+            }
+
+            stringBuffer[subLength] = '\0';
+
+            splitArray[arrayIndex] = newString(stringBuffer);
+            free(stringBuffer);
+            arrayIndex++;
+            start++;
+        }
+    }
+
+    *count = delimeterCount + 1;
+    return splitArray;
 }
