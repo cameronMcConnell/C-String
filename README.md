@@ -119,7 +119,6 @@ string *substring = extract(str, 7, 11);
 ### Comparing strings
 
 ```c
-Copy code
 string *str1 = newString("Hello");
 string *str2 = newString("Hello");
 int isEqual = compare(str1, str2);
