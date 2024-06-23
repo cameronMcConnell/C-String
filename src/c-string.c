@@ -1,4 +1,5 @@
 #include "c-string.h"
+#include <stdlib.h>
 
 string *newString(const char *staticString) {
     string *newStr = (string*) malloc(sizeof(string));
@@ -27,14 +28,14 @@ string *newString(const char *staticString) {
     return newStr;
 }
 
-void freeString(const string *str) {
+void freeString( string *str) {
     if (str != NULL) {
         free(str->str);
         free(str);
     }
 }
 
-string *concat(const string *str1, const string *str2) {
+string *concat(string *str1, string *str2) {
     string *newStr = (string*) malloc(sizeof(string));
     if (newStr == NULL) {
         return NULL;
@@ -64,7 +65,7 @@ string *concat(const string *str1, const string *str2) {
     return newStr;
 }
 
-string *trim(const string *str) {
+string *trim(string *str) {
     string *newStr = (string*) malloc(sizeof(string));
     if (newStr == NULL) {
         return NULL;
@@ -110,7 +111,7 @@ string *trim(const string *str) {
     return newStr;
 }
 
-string *replace(const string *str, const char oldChar, const char newChar) {
+string *replace(string *str, const char oldChar, const char newChar) {
     string *newStr = newString(str->str);
 
     for (size_t i = 0; i < newStr->length; i++) {
@@ -122,7 +123,7 @@ string *replace(const string *str, const char oldChar, const char newChar) {
     return newStr;
 }
 
-string *toUpper(const string *str) {
+string *toUpper(string *str) {
     string *newStr = newString(str->str);
 
     for (size_t i = 0; i < newStr->length; i++) {
@@ -135,7 +136,7 @@ string *toUpper(const string *str) {
     return newStr;
 }
 
-string *toLower(const string *str) {
+string *toLower(string *str) {
     string *newStr = newString(str->str);
 
     for (size_t i = 0; i < newStr->length; i++) {
@@ -148,7 +149,7 @@ string *toLower(const string *str) {
     return newStr;
 }
 
-string *reverse(const string *str) {
+string *reverse(string *str) {
     string *newStr = newString(str->str);
 
     size_t i = 0;
@@ -165,7 +166,11 @@ string *reverse(const string *str) {
     return newStr;
 }
 
-string *extract(const string *str, size_t start, size_t end) {
+string *extract(string *str, size_t start, size_t end) {
+    if (start > end) {
+        return NULL;
+    }
+    
     string *newStr = (string*) malloc(sizeof(string));
     if (newStr == NULL) {
         return NULL;
@@ -178,7 +183,7 @@ string *extract(const string *str, size_t start, size_t end) {
         return NULL;
     }
 
-    for (size_t i = 0; start < end; i++) {
+    for (size_t i = 0; i < newStr->length; i++) {
         newStr->str[i] = str->str[start];
         start++;
     }
@@ -188,7 +193,7 @@ string *extract(const string *str, size_t start, size_t end) {
     return newStr;
 }
 
-int compare(const string *str1, const string *str2) {
+int compare(string *str1, string *str2) {
     if (str1->length != str2->length) {
         return 0;
     }
@@ -202,11 +207,11 @@ int compare(const string *str1, const string *str2) {
     return 1;
 }
 
-string *copyString(const string *str) {
+string *copyString(string *str) {
     return newString(str->str);
 }
 
-int isSubstring(const string *str, const string *sub) {
+int isSubstring(string *str, string *sub) {
     if (sub->length > str->length) {
         return 0;
     }
@@ -218,12 +223,12 @@ int isSubstring(const string *str, const string *sub) {
         for (size_t j = i; j < str->length; j++) {
             if (sub->str[k] == str->str[j]) {
                 k++;
+            } else {
+                break;
             }
 
             if (k == sub->length) {
                 return 1;
-            } else {
-                break;
             }
         }
     }
@@ -231,7 +236,7 @@ int isSubstring(const string *str, const string *sub) {
     return 0;
 }
 
-string **split(const string *str, const char delimeter, size_t *count) {
+string **split(string *str, const char delimeter, size_t *count) {
     size_t delimeterCount = 0;
 
     for (size_t i = 0; i < str->length; i++) {
