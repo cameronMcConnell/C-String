@@ -26,43 +26,74 @@ gcc -o your_program your_program.c src/c-string.c
 
 ## Functions
 
-`string *newString(const char *staticString)`
+```c
+string *newString(const char *staticString)
+```
 * Creates a new string object from a C-style string.
 
-`void freeString(string *str)`
+```c
+string *charToString(const char character)
+```
+* Creates a new string object from a char.
+
+```c
+void freeString(string *str)
+```
 * Frees the memory allocated for a string object.
 
-`string *concat(string *str1, string *str2)`
+```c
+string *concat(string *str1, string *str2)
+```
 * Concatenates two strings.
 
-`string *trim(string *str)`
+```c
+string *trim(string *str)
+```
 * Trims leading and trailing whitespace from a string.
 
-`string *replace(string *str, const char oldChar, const char newChar)`
+```c
+string *replace(string *str, const char oldChar, const char newChar)
+```
 * Replaces all occurrences of oldChar with newChar in a string.
 
-`string *toUpper(string *str)`
+```c
+string *toUpper(string *str)
+```
 * Converts all characters in a string to uppercase.
 
-`string *toLower(string *str)`
+```c
+string *toLower(string *str)
+```
 * Converts all characters in a string to lowercase.
 
-`string *reverse(string *str)`
+```c
+string *reverse(string *str)
+```
 * Reverses a string.
 
-`string *extract(string *str, size_t start, size_t end)`
+```c
+string *extract(string *str, size_t start, size_t end)
+```
 * Extracts a substring from start to end.
 
-`int compare(string *str1, string *str2)`
+```c
+int compare(string *str1, string *str2)
+```
 * Compares two strings for equality.
 
-`string *copyString(string *str)`
+```c
+string *copyString(string *str)
+```
 * Creates a copy of a string.
 
-`int isSubstring(string *str, string *sub)`
+```c
+int isSubstring(string *str, string *sub)
+```
 * Checks if sub is a substring of str.
 
-`string **split(string *str, const char delimiter, size_t *count)`
+```c
+string **split(string *str, const char delimiter, size_t *count)
+```
 * Splits a string by the given delimiter into an array of strings.
 
 ## Examples
